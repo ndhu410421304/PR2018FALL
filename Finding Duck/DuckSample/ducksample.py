@@ -8,7 +8,10 @@ def main():
 	img = cv.imread('full_duck.jpg')
 	#if not img:
 	#	print('nothing been reas')
+	b,g,r = cv.split(img)
+	cv.imshow('rduckimg',r)
 	cv.imshow('duckimg', img)
+	
 	c = cv.waitKey(1200)
 	if c >= 0: 
 		return -1
