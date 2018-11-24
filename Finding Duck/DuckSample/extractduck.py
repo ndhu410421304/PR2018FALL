@@ -8,7 +8,7 @@ class Gmodel:
 		self.u = 0
 		self.co = 0
 		#self.p = 0
-	def likelihood(self, r, g, b):
+	def likelihood(self, r, g, b): #array
 		p = 0
 		return p
 	def callikelihood(self):
@@ -27,8 +27,10 @@ class Gmodel:
 			total = total + x
 		self.u = total / n
 		#np.transpose
-		
-		
+		total = 0
+		for n:
+			total = total + (x - u) * np.transpose(x - u)
+		self.co = total / (n - 1) #3-2 bias estimation
 
 class Bayes:
 	def __init__(self):
