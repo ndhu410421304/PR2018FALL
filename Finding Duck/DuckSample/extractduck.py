@@ -5,16 +5,16 @@ import math
 
 class Gmodel:
 	def __init__(self, array, n):
-		self.u = 0
-		self.co = 0
 		#self.p = 0
 		self.array = array
 		self.num = n
-		self.resultarray = np.zeros((n,n))
+		self.resultarray = np.zeros((3,3))
+		self.u = np.zeros((1,3))
+		self.co = np.zeros((3,3))
 		
 	def pox(self, x):
-		result = math.exp((x - self.u) * (x - self.u) / (self.co * 2)) / (math.sqrt(2 * math.pi * self.co))
-		return result
+		result = np.exp(((x - self.u) * np.transpose(x - self.u)) / (self.co * 2)) / (np.sqrt(2 * np.pi * self.co))
+		return result.all()
 		
 	def setarray(self,array):
 		self.array = array
@@ -22,13 +22,13 @@ class Gmodel:
 	def buildmodel(self):
 		#sampleimg = cv.LoadImage("full_duck.jpg")
 		#sampleb,sampleg,sampler = cv.split(sampleimg)
-		total = [0,0,0]
+		total = np.zeros((1,3))
 		for i in range(self.num):
-			total = total + self.array(n,)
-		self.u = total / n
+			total = total + self.array[i,:]
+		self.u = total / self.num
 		for i in range(self.num):
-			resultarray = resultarray + self.array[n,:].dot(np.transpose(self.array[n,:]))
-		self.co = resultarray / (n-1)
+			self.resultarray = self.resultarray + self.array[i,:].dot(np.transpose(self.array[i,:]))
+		self.co = self.resultarray / (self.num-1)
 
 class Bayes:
 	def __init__(self):
@@ -41,8 +41,8 @@ class Bayes:
 		return label
 
 sampleimg = cv.imread("full_duck_express.jpg",3)
-duckimg = cv.imread("duckplot_express.jpg",3)
-nonduckimg = cv.imread("nonduckplot_express.jpg",3)
+duckimg = cv.imread("duckplot_express.png",3)
+nonduckimg = cv.imread("nonduckplot_express.png",3)
 #cv.imshow('S', sampleimg)
 #cv.imshow('D', duckimg)
 #cv.imshow('N', nonduckimg)
@@ -60,7 +60,7 @@ ducknum = 0
 for i in range(hi):
 	for j in range(wei):
 		if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
-			print('1')
+			#print('1')
 			ducklisti.append(i)
 			ducklistj.append(j)
 			ducknum = ducknum + 1
@@ -71,38 +71,38 @@ nonducknum = 0
 for i in range(hi):
 	for j in range(wei):
 		if nonduckb[i,j] == 255 and nonduckg[i,j] == 0 and nonduckr[i,j] == 178:
-			print('2')
+			#print('2')
 			nonducklisti.append(i)
 			nonducklistj.append(j)
 			nonducknum = nonducknum + 1
 
-duckarray = np.zeros((n,3))
-nonduckarray = np.zeros((n,3))			
+duckarray = np.zeros((ducknum,3))
+nonduckarray = np.zeros((nonducknum,3))			
 
-duckmodel = gmodel(duckarray, n)
-nonduckmodel = gmodel(nonduckarray, n)
+duckmodel = Gmodel(duckarray, ducknum)
+nonduckmodel = Gmodel(nonduckarray, nonducknum)
 			
 for n in range(ducknum):
-	startpointi = ducklist[i] - 4
-	startpointj = ducklist[j] - 4
-	for i in range(9):
-		for j in range(9):
-			print('3')
+	startpointi = ducklisti[n] - 2
+	startpointj = ducklistj[n] - 2
+	for i in range(5):
+		for j in range(5):
+			#print('3')
 			duckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			duckarray[n,1] = sampleg[startpointj + i, startpointj + j]
 			duckarray[n,2] = sampler[startpointj + i, startpointj + j]
-duckmodel.setarray(array)
+duckmodel.setarray(duckarray)
 
 for n in range(nonducknum):
-	startpointi = nonducklist[i] - 2
-	startpointj = nonducklist[j] - 2
+	startpointi = nonducklisti[n] - 2
+	startpointj = nonducklistj[n] - 2
 	for i in range(5):
 		for j in range(5):
-			print('4')
+			#print('4')
 			nonduckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			nonduckarray[n,1] = sampleg[startpointj + i, startpointj + j]
 			nonduckarray[n,2] = sampler[startpointj + i, startpointj + j]
-nonduckmodel.setarray(array)
+nonduckmodel.setarray(nonduckarray)
 
 duckmodel.buildmodel()
 nonduckmodel.buildmodel()
@@ -112,17 +112,19 @@ test = np.zeros((1,3))
 
 for i in range(hi):
 	for j in range(wei):
-		print('5')
-		test[0,0] = sampleimgb[i,j]
-		test[0,1] = sampleimgg[i,j]
-		test[0,2] = sampleimgr[i,j]
-		label = bayes.Classify(duckmodel.pox(test), nonduckmodel.pox(test))
+		#print('5')
+		test[0,0] = sampleb[i,j]
+		test[0,1] = sampleg[i,j]
+		test[0,2] = sampler[i,j]
+		#print(test)
+		#print(ducknum)
+		label = bayes.classify(duckmodel.pox(test), nonduckmodel.pox(test))
 		if(label):
 			color = (0,0,255)
 			sampleimg[i,j] = color
 
 #cv.ShowImage('Result', sampleimg)
-cv.imwrite('Result', sampleimg)
+cv.imwrite('Result_express.png', sampleimg)
 
 			
 
