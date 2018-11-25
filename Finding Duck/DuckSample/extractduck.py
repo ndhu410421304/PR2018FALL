@@ -45,6 +45,8 @@ duckimg = cv.LoadImage("duckplot.jpg")
 nonduckimg = cv.LoadImage("nonduckplot.jpg")		
 		
 duckb,duckg,duckr = cv.split(duckimg)
+nonduckb,nonduckg,nonduckr = cv.split(nonduckimg)
+sampleb,sampleg,sampler = cv.split(sampleimg)
 
 ducklisti = []
 ducklistj = []
@@ -65,8 +67,15 @@ for i in range(nonduckimg.height):
 			nonducklisti.append(i)
 			nonducklistj.append(j)
 			nonducknum = nonducknum + 1
-			
 
+
+			
+for n in range(ducknum):
+	startpointi = ducklist[i] - 19
+	startpointj = ducklist[j] - 19
+	for i in range(39):
+		for j in range(39):
+			
 	
 	
 		
