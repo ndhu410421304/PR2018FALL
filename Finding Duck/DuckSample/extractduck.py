@@ -40,9 +40,13 @@ class Bayes:
 		label = 0
 		return label
 
-sampleimg = cv.imread("full_duck.jpg",3)
-duckimg = cv.imread("duckplot.jpg",3)
-nonduckimg = cv.imread("nonduckplot.jpg",3)		
+sampleimg = cv.imread("full_duck_express.jpg",3)
+duckimg = cv.imread("duckplot_express.jpg",3)
+nonduckimg = cv.imread("nonduckplot_express.jpg",3)
+#cv.imshow('S', sampleimg)
+#cv.imshow('D', duckimg)
+#cv.imshow('N', nonduckimg)
+#c = cv.waitKey(12000)		
 		
 duckb,duckg,duckr = cv.split(duckimg)
 nonduckb,nonduckg,nonduckr = cv.split(nonduckimg)
@@ -90,10 +94,10 @@ for n in range(ducknum):
 duckmodel.setarray(array)
 
 for n in range(nonducknum):
-	startpointi = nonducklist[i] - 4
-	startpointj = nonducklist[j] - 4
-	for i in range(9):
-		for j in range(9):
+	startpointi = nonducklist[i] - 2
+	startpointj = nonducklist[j] - 2
+	for i in range(5):
+		for j in range(5):
 			print('4')
 			nonduckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			nonduckarray[n,1] = sampleg[startpointj + i, startpointj + j]
@@ -118,8 +122,10 @@ for i in range(hi):
 			sampleimg[i,j] = color
 
 #cv.ShowImage('Result', sampleimg)
-cv.imwrite('Result', sampleimg)`
-		
+cv.imwrite('Result', sampleimg)
+
+			
+
 			
 	
 	
