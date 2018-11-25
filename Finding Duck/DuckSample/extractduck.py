@@ -4,39 +4,39 @@ import numpy as np
 import math
 
 class Gmodel:
-	def __init__(self):
+	def __init__(self, array, n):
 		self.u = 0
 		self.co = 0
 		#self.p = 0
-	def likelihood(self, r, g, b): #array
-		p = 0
-		return p
-	def callikelihood(self):
-		r = 0
-		g = 0
-		b = 0
-		totallikelihood = 0
-		for n:
-			totallikelihood = totallikelihood + self.likelihood(r,g.b)
-		return totallikelihood
+		self.array = array
+		self.num = n
+		self.resultarray = np.zeros((n,n))
 		
-	def pox(self, r, g, b):
-		x = 0
-		bias = 1 #3-2
-		for n:
-			total = total + x
+	def pox(self, x):
+		result = math.exp((x - self.u) * (x - self.u) / (self.co * 2)) / (math.sqrt(2 * math.pi * self.co))
+		return result
+		
+	def setarray(self,array):
+		self.array = array
+
+	def buildmodel(self):
+		#sampleimg = cv.LoadImage("full_duck.jpg")
+		#sampleb,sampleg,sampler = cv.split(sampleimg)
+		total = [0,0,0]
+		for i in range(self.num):
+			total = total + self.array(n,)
 		self.u = total / n
-		#np.transpose
-		total = 0
-		for n:
-			total = total + (x - u) * np.transpose(x - u)
-		self.co = total / (n - 1) #3-2 bias estimation
+		for i in range(self.num):
+			resultarray = resultarray + self.array(n,).dot(np.transpose(self.array(n,)))
+		self.co = resultarray / (n-1)
 
 class Bayes:
 	def __init__(self):
 		self.w0 = 1
 		self.w1 = 1
 	def classify(self, pox1, pox2)
+		if(pox1 > pox2):
+			label = 1
 		label = 0
 		return label
 
@@ -68,13 +68,50 @@ for i in range(nonduckimg.height):
 			nonducklistj.append(j)
 			nonducknum = nonducknum + 1
 
+duckarray = np.zeros((n,3))
+nonduckarray = np.zeros((n,3))			
 
+duckmodel = gmodel(duckarray, n)
+nonduckmodel = gmodel(nonduckarray, n)
 			
 for n in range(ducknum):
-	startpointi = ducklist[i] - 19
-	startpointj = ducklist[j] - 19
-	for i in range(39):
-		for j in range(39):
+	startpointi = ducklist[i] - 4
+	startpointj = ducklist[j] - 4
+	for i in range(9):
+		for j in range(9):
+			duckarray[n,0] = sampleb[startpointj + i, startpointj + j]
+			duckarray[n,1] = sampleg[startpointj + i, startpointj + j]
+			duckarray[n,2] = sampler[startpointj + i, startpointj + j]
+duckmodel.setarray(array)
+
+for n in range(nonducknum):
+	startpointi = nonducklist[i] - 4
+	startpointj = nonducklist[j] - 4
+	for i in range(9):
+		for j in range(9):
+			nonduckarray[n,0] = sampleb[startpointj + i, startpointj + j]
+			nonduckarray[n,1] = sampleg[startpointj + i, startpointj + j]
+			nonduckarray[n,2] = sampler[startpointj + i, startpointj + j]
+nonduckmodel.setarray(array)
+
+duckmodel.buildmodel()
+nonduckmodel.buildmodel()
+
+bayes = Bayes()
+test = np.zeros((1,3))
+
+for i in range(sampleimg.height):
+    for j in range(sampleimg.width):
+		test[0,0] = sampleimgb[i,j]
+		test[0,1] = sampleimgg[i,j]
+		test[0,2] = sampleimgr[i,j]
+		label = bayes(duckmodel.pox(test), nonduckmodel.pox(test))
+		if(label):
+			color = (0,0,255)
+			sampleimg[i,j] = color
+
+cv.ShowImage('Result', sampleimg)
+		
 			
 	
 	
