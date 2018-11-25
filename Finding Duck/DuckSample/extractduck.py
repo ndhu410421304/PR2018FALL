@@ -56,6 +56,7 @@ ducknum = 0
 for i in range(hi):
 	for j in range(wei):
 		if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
+			print('1')
 			ducklisti.append(i)
 			ducklistj.append(j)
 			ducknum = ducknum + 1
@@ -66,6 +67,7 @@ nonducknum = 0
 for i in range(hi):
 	for j in range(wei):
 		if nonduckb[i,j] == 255 and nonduckg[i,j] == 0 and nonduckr[i,j] == 178:
+			print('2')
 			nonducklisti.append(i)
 			nonducklistj.append(j)
 			nonducknum = nonducknum + 1
@@ -81,6 +83,7 @@ for n in range(ducknum):
 	startpointj = ducklist[j] - 4
 	for i in range(9):
 		for j in range(9):
+			print('3')
 			duckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			duckarray[n,1] = sampleg[startpointj + i, startpointj + j]
 			duckarray[n,2] = sampler[startpointj + i, startpointj + j]
@@ -91,6 +94,7 @@ for n in range(nonducknum):
 	startpointj = nonducklist[j] - 4
 	for i in range(9):
 		for j in range(9):
+			print('4')
 			nonduckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			nonduckarray[n,1] = sampleg[startpointj + i, startpointj + j]
 			nonduckarray[n,2] = sampler[startpointj + i, startpointj + j]
@@ -104,6 +108,7 @@ test = np.zeros((1,3))
 
 for i in range(hi):
 	for j in range(wei):
+		print('5')
 		test[0,0] = sampleimgb[i,j]
 		test[0,1] = sampleimgg[i,j]
 		test[0,2] = sampleimgr[i,j]
