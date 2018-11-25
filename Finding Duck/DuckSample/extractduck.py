@@ -27,33 +27,35 @@ class Gmodel:
 			total = total + self.array(n,)
 		self.u = total / n
 		for i in range(self.num):
-			resultarray = resultarray + self.array(n,).dot(np.transpose(self.array(n,)))
+			resultarray = resultarray + self.array[n,:].dot(np.transpose(self.array[n,:]))
 		self.co = resultarray / (n-1)
 
 class Bayes:
 	def __init__(self):
 		self.w0 = 1
 		self.w1 = 1
-	def classify(self, pox1, pox2)
+	def classify(self, pox1, pox2):
 		if(pox1 > pox2):
 			label = 1
 		label = 0
 		return label
 
-sampleimg = cv.LoadImage("full_duck.jpg")
-duckimg = cv.LoadImage("duckplot.jpg")
-nonduckimg = cv.LoadImage("nonduckplot.jpg")		
+sampleimg = cv.imread("full_duck.jpg",3)
+duckimg = cv.imread("duckplot.jpg",3)
+nonduckimg = cv.imread("nonduckplot.jpg",3)		
 		
 duckb,duckg,duckr = cv.split(duckimg)
 nonduckb,nonduckg,nonduckr = cv.split(nonduckimg)
 sampleb,sampleg,sampler = cv.split(sampleimg)
 
+hi, wei = sampleimg.shape[:2]
+
 ducklisti = []
 ducklistj = []
 ducknum = 0
-for i in range(duckimg.height):
-    for j in range(duckimg.width):
-        if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
+for i in range(hi):
+	for j in range(wei):
+		if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
 			ducklisti.append(i)
 			ducklistj.append(j)
 			ducknum = ducknum + 1
@@ -61,9 +63,9 @@ for i in range(duckimg.height):
 nonducklisti = []
 nonducklistj = []
 nonducknum = 0
-for i in range(nonduckimg.height):
-    for j in range(nonduckimg.width):
-        if nonduckb[i,j] == 255 and nonduckg[i,j] == 0 and nonduckr[i,j] == 178:
+for i in range(hi):
+	for j in range(wei):
+		if nonduckb[i,j] == 255 and nonduckg[i,j] == 0 and nonduckr[i,j] == 178:
 			nonducklisti.append(i)
 			nonducklistj.append(j)
 			nonducknum = nonducknum + 1
@@ -100,17 +102,18 @@ nonduckmodel.buildmodel()
 bayes = Bayes()
 test = np.zeros((1,3))
 
-for i in range(sampleimg.height):
-    for j in range(sampleimg.width):
+for i in range(hi):
+	for j in range(wei):
 		test[0,0] = sampleimgb[i,j]
 		test[0,1] = sampleimgg[i,j]
 		test[0,2] = sampleimgr[i,j]
-		label = bayes(duckmodel.pox(test), nonduckmodel.pox(test))
+		label = bayes.Classify(duckmodel.pox(test), nonduckmodel.pox(test))
 		if(label):
 			color = (0,0,255)
 			sampleimg[i,j] = color
 
-cv.ShowImage('Result', sampleimg)
+#cv.ShowImage('Result', sampleimg)
+cv.imwrite('Result', sampleimg)`
 		
 			
 	
