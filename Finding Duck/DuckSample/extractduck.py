@@ -45,8 +45,8 @@ class Bayes:
 		return label
 
 sampleimg = cv.imread("full_duck_express.jpg",3)
-duckimg = cv.imread("duckplot_express.png",3)
-nonduckimg = cv.imread("nonduckplot_express.png",3)
+duckimg = cv.imread("duckplot_express_2.png",3)
+nonduckimg = cv.imread("nonduckplot_express_2.png",3)
 #cv.imshow('S', sampleimg)
 #cv.imshow('D', duckimg)
 #cv.imshow('N', nonduckimg)
@@ -98,10 +98,10 @@ for n in range(ducknum):
 duckmodel.setarray(duckarray)
 
 for n in range(nonducknum):
-	startpointi = nonducklisti[n] - 2
-	startpointj = nonducklistj[n] - 2
-	for i in range(5):
-		for j in range(5):
+	startpointi = nonducklisti[n] - 0
+	startpointj = nonducklistj[n] - 0
+	for i in range(1):
+		for j in range(1):
 			#print('4')
 			nonduckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			nonduckarray[n,1] = sampleg[startpointj + i, startpointj + j]
