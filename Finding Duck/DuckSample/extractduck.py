@@ -2,6 +2,7 @@ import sys
 import cv2 as cv
 import numpy as np
 import math
+from numpy.linalg import matrix_power
 
 class Gmodel:
 	def __init__(self, array, n):
@@ -13,8 +14,10 @@ class Gmodel:
 		self.co = np.zeros((3,3))
 		
 	def pox(self, x):
-		result = np.exp(((x - self.u) * np.transpose(x - self.u)) / (self.co * 2)) / (np.sqrt(2 * np.pi * self.co))
-		return result.all()
+		realco = np.sqrt(self.co)
+		result = (np.exp((x - self.u) / (realco) * np.transpose(x - self.u) /  (-2)) / np.sqrt(realco)) / np.sqrt(np.power(np.pi,3))
+		#print(result)
+		return result.sum()
 		
 	def setarray(self,array):
 		self.array = array
@@ -37,7 +40,8 @@ class Bayes:
 	def classify(self, pox1, pox2):
 		if(pox1 > pox2):
 			label = 1
-		label = 0
+		else:
+			label = 0
 		return label
 
 sampleimg = cv.imread("full_duck_express.jpg",3)
