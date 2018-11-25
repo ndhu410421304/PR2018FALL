@@ -39,6 +39,36 @@ class Bayes:
 	def classify(self, pox1, pox2)
 		label = 0
 		return label
+
+sampleimg = cv.LoadImage("full_duck.jpg")
+duckimg = cv.LoadImage("duckplot.jpg")
+nonduckimg = cv.LoadImage("nonduckplot.jpg")		
+		
+duckb,duckg,duckr = cv.split(duckimg)
+
+ducklisti = []
+ducklistj = []
+ducknum = 0
+for i in range(duckimg.height):
+    for j in range(duckimg.width):
+        if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
+			ducklisti.append(i)
+			ducklistj.append(j)
+			ducknum = ducknum + 1
+
+nonducklisti = []
+nonducklistj = []
+nonducknum = 0
+for i in range(nonduckimg.height):
+    for j in range(nonduckimg.width):
+        if nonduckb[i,j] == 255 and nonduckg[i,j] == 0 and nonduckr[i,j] == 178:
+			nonducklisti.append(i)
+			nonducklistj.append(j)
+			nonducknum = nonducknum + 1
+			
+
+	
+	
 		
 
 
