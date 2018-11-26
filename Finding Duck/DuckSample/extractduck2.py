@@ -75,14 +75,15 @@ ducknum = hid * weid
 duckarray = np.zeros((ducknum,3))
 for i in range(hid):
 	for j in range(weid):
-		if duckb[i,j] > 235 and duckg[i,j] > 235 and duckr[i,j] > 235:
+		if duckb[i,j] > 240 and duckg[i,j] > 240 and duckr[i,j] > 240: #v2-2
+		#if duckb[i,j] > 235 and duckg[i,j] > 235 and duckr[i,j] > 235: #v2-1
 			duckarray[n,0] = duckb[i,j]
 			duckarray[n,1] = duckg[i,j]
 			duckarray[n,2] = duckr[i,j]
 		else:
-			duckarray[n,0] = 250
-			duckarray[n,1] = 250
-			duckarray[n,2] = 250
+			duckarray[n,0] = 255
+			duckarray[n,1] = 255
+			duckarray[n,2] = 255
 		n = n + 1
 		
 n = 0
@@ -120,15 +121,15 @@ for i in range(hi):
 		if(label):
 			color = (0,0,255)
 			sampleimg[i,j] = color
-		n = n + 1
-		if(n == 100):
-			print(n)
-		if((n%10000 == 0) and (n > 10000)):
-			print(n)
+		#n = n + 1
+		#if(n == 100):
+		#	print(n)
+		#if((n%10000 == 0) and (n > 10000)):
+		#	print(n)
 
 #cv.ShowImage('Result', sampleimg)
 print("--- %s seconds ---" % (time.time() - start_time))
-cv.imwrite('Result.jpg', sampleimg)
+cv.imwrite('Result_2.jpg', sampleimg)
 
 			
 
