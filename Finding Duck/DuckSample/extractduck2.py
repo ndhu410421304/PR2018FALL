@@ -75,7 +75,8 @@ ducknum = hid * weid
 duckarray = np.zeros((ducknum,3))
 for i in range(hid):
 	for j in range(weid):
-		if duckb[i,j] > 240 and duckg[i,j] > 240 and duckr[i,j] > 240: #v2-2
+		if duckb[i,j] > 250 and duckg[i,j] > 250 and duckr[i,j] > 250: #v2-3
+		#if duckb[i,j] > 240 and duckg[i,j] > 240 and duckr[i,j] > 240: #v2-2
 		#if duckb[i,j] > 235 and duckg[i,j] > 235 and duckr[i,j] > 235: #v2-1
 			duckarray[n,0] = duckb[i,j]
 			duckarray[n,1] = duckg[i,j]
@@ -91,9 +92,14 @@ nonducknum = hin * wein
 nonduckarray = np.zeros((nonducknum,3))
 for i in range(hin):
 	for j in range(wein):
-		nonduckarray[n,0] = nonduckb[i,j]
-		nonduckarray[n,1] = nonduckg[i,j]
-		nonduckarray[n,2] = nonduckr[i,j]
+		if nonduckb[i,j] > 200 and nonduckg[i,j] > 200 and nonduckr[i,j] > 200:
+			nonduckarray[n,0] = nonduckb[i,j]
+			nonduckarray[n,1] = nonduckg[i,j]
+			nonduckarray[n,2] = nonduckr[i,j]
+		else:
+			nonduckarray[n,0] = 200
+			nonduckarray[n,1] = 200
+			nonduckarray[n,2] = 200
 		n = n + 1
 
 n = 0
@@ -129,7 +135,7 @@ for i in range(hi):
 
 #cv.ShowImage('Result', sampleimg)
 print("--- %s seconds ---" % (time.time() - start_time))
-cv.imwrite('Result_2.jpg', sampleimg)
+cv.imwrite('Result_3.jpg', sampleimg)
 
 			
 
