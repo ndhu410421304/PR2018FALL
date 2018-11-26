@@ -44,9 +44,9 @@ class Bayes:
 			label = 0
 		return label
 
-sampleimg = cv.imread("full_duck_express.jpg",3)
-duckimg = cv.imread("duckplot_express_2.png",3)
-nonduckimg = cv.imread("nonduckplot_express_2.png",3)
+sampleimg = cv.imread("full_duck.jpg",3)
+duckimg = cv.imread("duckplot.png",3)
+nonduckimg = cv.imread("nonduckplot.png",3)
 #cv.imshow('S', sampleimg)
 #cv.imshow('D', duckimg)
 #cv.imshow('N', nonduckimg)
@@ -63,7 +63,8 @@ ducklistj = []
 ducknum = 0
 for i in range(hi):
 	for j in range(wei):
-		if duckb[i,j] == 0 and duckg[i,j] == 0 and duckr[i,j] == 255:
+		#if duckb[i,j] < 10 and duckg[i,j] < 10 and duckr[i,j] > 180:
+		if duckb[i,j] < 2 and duckg[i,j] < 2 and duckr[i,j] > 235:
 			#print('1')
 			ducklisti.append(i)
 			ducklistj.append(j)
@@ -87,10 +88,10 @@ duckmodel = Gmodel(duckarray, ducknum)
 nonduckmodel = Gmodel(nonduckarray, nonducknum)
 			
 for n in range(ducknum):
-	startpointi = ducklisti[n] - 2
-	startpointj = ducklistj[n] - 2
-	for i in range(5):
-		for j in range(5):
+	startpointi = ducklisti[n] - 0
+	startpointj = ducklistj[n] - 0
+	for i in range(1):
+		for j in range(1):
 			#print('3')
 			duckarray[n,0] = sampleb[startpointj + i, startpointj + j]
 			duckarray[n,1] = sampleg[startpointj + i, startpointj + j]
@@ -128,7 +129,7 @@ for i in range(hi):
 			sampleimg[i,j] = color
 
 #cv.ShowImage('Result', sampleimg)
-cv.imwrite('Result_express.png', sampleimg)
+cv.imwrite('Result.jpg', sampleimg)
 
 			
 
