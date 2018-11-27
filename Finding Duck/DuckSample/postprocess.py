@@ -3,11 +3,16 @@ import cv2 as cv
 import numpy as np
 sys.setrecursionlimit(2000)
 
+import time
+start_time = time.time()
+
 out = cv.imread("full_duck.jpg",3)
 Re = cv.imread("Result.jpg",3)
 Re2 = cv.imread("Result_2.jpg",3)
 Re3 = cv.imread("Result_3.jpg",3)
 Re4 = cv.imread("Result_4.jpg",3)
+
+b3,g3,r3 = cv.split(Re3)
 
 hi1, wei1 = Re.shape[:2]
 hi2, wei2 = Re2.shape[:2]
@@ -15,10 +20,11 @@ hi3, wei3 = Re3.shape[:2]
 hi4, wei4 = Re4.shape[:2]
 
 class Guess:
-	def __init__(self,img,out, hi, wei):
+	def __init__(self,img,out, hi, wei, b, g, r):
 		self.total = 0
 		self.img = img
-		self.imgb,self.imgg,self.imgr = cv.split(self.img)
+		#self.imgb, self.imgg,self.imgr = cv.split(self.img)
+		self.imgb, self.imgg,self.imgr = b,g,r
 		self.itotal = 0
 		self.jtotal = 0
 		self.value = 450
@@ -27,6 +33,7 @@ class Guess:
 		self.hi = hi
 		self.wei = wei
 		self.winsize = 30
+		self.array = np.zeros((hi,wei))
 	def go(self, i, j, total, las):
 		self.total = total
 		self.itotal = 0
@@ -79,17 +86,33 @@ class Guess:
 								self.total += 1
 							elif(self.imgb[i+i3,j+30]  > 245 and self.imgg[i+i3,j+30] >245 and self.imgr[i+i3,j+30]>245):
 								self.total += 1
+				
 				if(total > self.value):
 					self.outimgr[i+15,j+15] = 0
 					self.outimgr[i+15,j+15] = 0
 					self.outimgr[i+15,j+15] = 255
-				self.go(i + 1, j, total - self.itotal, 1) #how much to jump if total > value?
-				self.go(i, j + 1, total - self.jtotal, 2)
+				
+				#self.go(i + 1, j, total - self.itotal, 1) #how much to jump if total > value?
+				#self.go(i, j + 1, total - self.jtotal, 2)
+		return total - self.jtotal # ignore most left
+		
+	def forgo(self):
+		
+		for i in range(self.hi):
+			for j in range(self.wei):
+				if(i == 0 and j == 0):
+					self.array[0,0] = self.go(0,0,0,0)
+				elif(j != 0):
+					self.array[i,j] = self.go(i,j,self.array[i,j-1],1)
+				else:
+					self.array[i,0] = self.go(i,j,self.array[i-1,j],2)
+				print(i,j)
 		return self.outimg
 				
-guess2 = Guess(Re2,out,hi2,wei2)
-re2img = guess2.go(0,0,0,0)
-cv.imwrite('Re2.jpg',re2img)
+guess3 = Guess(Re3,out,hi3,wei3,b3,g3,r3)
+re3img = guess3.forgo()
+cv.imwrite('Re3.jpg',re3img)
+print("--- %s seconds ---" % (time.time() - start_time))
 							
 					
 		
