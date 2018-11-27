@@ -23,7 +23,7 @@ class Gmodel:
 	def pox(self, x):
 		result = np.exp((x - self.u) / (self.realco) * np.transpose(x - self.u) /  (-2)) / self.param3
 		#print(result)
-		return result
+		return result.sum()
 
 	def buildmodel(self):
 		hid,weid = self.img.shape[:2]
@@ -63,18 +63,22 @@ B = Bayes()
 
 im = np.asarray(sampleimg)
 
-print([*range(0,100000)])
+#print([*range(0,100000)])
 
-#hid,weid = sampleimg.shape[:2]
-#for i in range(hid):
-#	for j in range(weid):
-#		if(B.classify(duckmodel.pox(im[i,j,]),nonduckmodel.pox(im[i,j,])) == 1):
-#			sampleimg.itemset((i,j,2),255)
-#			sampleimg.itemset((i,j,2),0)
-#			sampleimg.itemset((i,j,2),0)
-#		print(i,j)
-sd = duckmodel.pox(im)
-nd = nonduckmodel.pox(im)
+hid,weid = sampleimg.shape[:2]
+for i in range(hid):
+	for j in range(weid):
+		if(B.classify(duckmodel.pox(im[i,j,]),nonduckmodel.pox(im[i,j,])) == 1):
+			sampleimg.itemset((i,j,2),255)
+			sampleimg.itemset((i,j,2),0)
+			sampleimg.itemset((i,j,2),0)
+		print(i,j)
+print(im[1,1,])
+print(im.shape)
+#np.apply_along_axis(duckmodel.pox(im), 0, im)
+#sd = duckmodel.pox(im[1,1,:])
+#nd = nonduckmodel.pox(im[:,:,])
+
 
 print("--- %s seconds ---" % (time.time() - start_time))
 cv.imwrite('Result_extract3.jpg', sampleimg)
