@@ -1,6 +1,9 @@
 import numpy as np
 import cv2
 
+import time
+start_time = time.time()
+
 #img = cv2.imread('mask.png')
 sampleimg = cv2.imread("full_duck.jpg",3)
 maskimg = cv2.imread("mask.png",3)
@@ -16,16 +19,19 @@ winsize = 49
 hwinsize = 24
 #pixels duck should comtain
 #~472, bias = 200
-minduck = 191250
-maxduck = 382500
+minduck = 95625
+maxduck = 191250
 for i in range(m.shape[0]):
 	x,y = m[i]
 	#higher than some value
-	s = maskimg[(x-hwinsize+1):(x+hwinsize-1)][(y-hwinsize+1):(y+hwinsize-1)].sum()
+	s = 0
+	for cy in range(49):
+		for cx in range(49):
+			s = s + maskimg[y-hwinsize + cy][x-hwinsize + cx].sum()
 	#prevent redo
-	if (s % 255) == 0:
-		if(s > 250):
-			k = s / maxduck
+	if(((s % 255) == 0) and s != 0):
+		if(s > 125):
+			k = 1 + s / maxduck
 			x2 = x-hwinsize+1
 			y2 = y-hwinsize+1
 			x3 = x+hwinsize-1
@@ -35,7 +41,7 @@ for i in range(m.shape[0]):
 			n = 1
 			#put value from window to array
 			arr = []
-			arr.append(([x, y]))
+			arr.append(([y, x]))
 			while(j1):
 				x,y = m[i-n]
 				n = n + 1
@@ -44,7 +50,7 @@ for i in range(m.shape[0]):
 				else:
 					if(x <= x2 and  x3 <= x):
 						if(y <= y2 and  y3 <= y):
-							arr.append(([x, y]))
+							arr.append(([y, x]))
 			n = 1
 			while(j2):
 				x,y = m[i+n]
@@ -54,7 +60,7 @@ for i in range(m.shape[0]):
 				else:
 					if(x <= x2 and  x3 <= x):
 						if(y <= y2 and  y3 <= y):
-							arr.append(([x, y]))
+							arr.append(([y, x]))
 			Z = np.float32(arr)
 
 			criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
@@ -67,12 +73,13 @@ for i in range(m.shape[0]):
 					b,d = center[q]
 					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
 					#prevent redo
-					cv2.circle(maskimg, (x,y), 3, (0,0,254), -1)
+					cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 				else:
 					b,d = center[q]
 					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
 					#prevent redo
-					cv2.circle(maskimg, (x,y), 3, (0,0,254), -1)
+					cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 
+print("--- %s seconds ---" % (time.time() - start_time))
 cv2.imwrite('KMean2.png', sampleimg)
 				
