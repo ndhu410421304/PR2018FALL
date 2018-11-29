@@ -23,8 +23,8 @@ hwinsize = 24
 minduck = 95625
 maxduck = 191250
 for i in range(m.shape[0]):
-	print(i)
 	x,y = m[i]
+	sx,sy = x,y
 	#higher than some value
 	s = 0
 	if(i != 0):
@@ -33,9 +33,6 @@ for i in range(m.shape[0]):
 	for cy in range(49):
 		for cx in range(49):
 			s = s + maskimg[x-hwinsize + cx][y-hwinsize + cy].sum()
-	print(s)
-	print(x,y)
-	print(maskimg[x][y])
 
 	#prevent redo
 	if(((s % 255) == 0) and s != 0):
@@ -89,18 +86,13 @@ for i in range(m.shape[0]):
 					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
 					#prevent redo
 					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
-					maskimg[x][y] = [254,254,254]
-					print(maskimg[x][y])
-					print(maskimg[x][y].sum())
+					maskimg[sx,sy,:] = [254,254,254]
 				else:
 					b,d = center[q]
 					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
 					#prevent redo
 					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
-					maskimg[x][y] = [254,254,254]
-					print(maskimg[x][y])
-					print(maskimg[x][y].sum())
-	print(maskimg[x][y].sum())
+					maskimg[sx,sy,:] = [254,254,254]
 
 print("--- %s seconds ---" % (time.time() - start_time))
 cv2.imwrite('KMean2.png', sampleimg)
