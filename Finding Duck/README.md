@@ -1,6 +1,9 @@
 # Finding Ducks
 * Note that the result of each program were all store under the file cases, since the picture were huge we are not going to put them here for now:
 
+## Current Structure
+![img](https://user-images.githubusercontent.com/33059129/49300350-effbe980-f4fc-11e8-9ff4-0849130706d2.PNG)
+
 ## Assignment report
 ### How to do the assignment?
   In this assignment, I choose to use python as the programming language I am going to use for programing. It was hard from the very start, since I haven’t use this programming language before this semester. Just like what everyone says, it is really easy to get started, but It can also contain multiple problems, such as problem due to not familiar with language, not familiar with support libraries, get confused with some grammar or syntax, etc.
