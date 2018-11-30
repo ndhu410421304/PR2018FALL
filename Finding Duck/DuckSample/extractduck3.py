@@ -24,6 +24,7 @@ class Gmodel:
 		
 	#return the probability
 	def pox(self, x):
+		#use those parameter we had used before to improve performance
 		result = np.exp((x - self.u) / (self.realco) * np.transpose(x - self.u) /  (-2)) / self.param3
 		return result.sum()
 	#for a model, first we need to get its mean vector and cov matrix, so we do that thing here

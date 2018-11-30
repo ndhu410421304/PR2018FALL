@@ -1,34 +1,30 @@
 import numpy as np
 import cv2
-
 import time
 start_time = time.time()
 
-#img = cv2.imread('mask.png')
+#get image from mask and original ones
 sampleimg = cv2.imread("full_duck.jpg",3)
 mask= cv2.imread("Mask.png",3)
 maskimg = mask.copy()
 
-
-
+#read the data we set in pre kmeans program
 m = np.fromfile('mask.dat', dtype=int)
 m = np.reshape(m, (-1, 2))
 
+#count numbers of ducks
 narr = []
-
-print(m.shape[0])
 
 winsize = 49
 hwinsize = 24
-#pixels duck should comtain
-#~472, bias = 200
+#pixels duck should comtain(parameters)
 minduck = 95625
 maxduck = 191250
 maxduck2 = 382500
 for i in range(m.shape[0]):
 	x,y = m[i]
 	sx,sy = x,y
-	#higher than some value
+	#for a 49 x 49 window, read each "duck point" in this range and to check if the amount of duck is high enough for us to called it a duck
 	s = 0
 	for cy in range(49):
 		for cx in range(49):
@@ -73,27 +69,21 @@ for i in range(m.shape[0]):
 						if(y >= y2 and  y3 >= y):
 							arr.append(([x, y]))
 			Z = np.float32(arr)
-			#print(arr)
-
+			#apply kmeans method to find the center for ducks
 			criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
 			ret,label,center=cv2.kmeans(Z,k,None,criteria,10,cv2.KMEANS_RANDOM_CENTERS)
 
-			#center = center.astype(int)
-			
+			#plot plenty enough dots for each ducks
 			for q in range(k):
 				if(k == 1):
 					b,d = center[q]
 					cv2.circle(sampleimg, (d,b), 3, (0,0,255), -1)
-					#prevent redo
-					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 					maskimg[sx,sy,:] = [254,254,254]
 				else:
 					b,d = center[q]
 					cv2.circle(sampleimg, (d,b), 3, (0,255,0), -1)
-					#prevent redo
-					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 					maskimg[sx,sy,:] = [254,254,254]
-
+			#save data for future
 			narr.append(([sx, sy]))
 			
 print("--- %s seconds ---" % (time.time() - start_time))
