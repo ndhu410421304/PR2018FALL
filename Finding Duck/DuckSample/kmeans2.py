@@ -6,13 +6,15 @@ start_time = time.time()
 
 #img = cv2.imread('mask.png')
 sampleimg = cv2.imread("full_duck.jpg",3)
-mask= cv2.imread("mask.png",3)
+mask= cv2.imread("Mask.png",3)
 maskimg = mask.copy()
 
 
 
 m = np.fromfile('mask.dat', dtype=int)
 m = np.reshape(m, (-1, 2))
+
+narr = []
 
 print(m.shape[0])
 
@@ -91,6 +93,10 @@ for i in range(m.shape[0]):
 					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 					maskimg[sx,sy,:] = [254,254,254]
 
+			narr.append(([sx, sy]))
+			
 print("--- %s seconds ---" % (time.time() - start_time))
 cv2.imwrite('KMean2.png', sampleimg)
+
+narr.tofile('narr.dat')
 				

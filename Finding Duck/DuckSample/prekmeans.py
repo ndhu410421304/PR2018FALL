@@ -3,7 +3,7 @@ import cv2
 import time
 start_time = time.time()
 
-img = cv2.imread('mask.png',1)
+img = cv2.imread('Mask.png',1)
 hid,weid = img.shape[:2]
 
 #c = np.fromfile('mask.dat', dtype=int)
