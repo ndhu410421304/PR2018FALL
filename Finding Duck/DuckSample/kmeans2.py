@@ -27,9 +27,6 @@ for i in range(m.shape[0]):
 	sx,sy = x,y
 	#higher than some value
 	s = 0
-	if(i != 0):
-		print(maskimg[x][y-1])
-		print(maskimg[x][y-1].sum())
 	for cy in range(49):
 		for cx in range(49):
 			s = s + maskimg[x-hwinsize + cx][y-hwinsize + cy].sum()
@@ -73,7 +70,7 @@ for i in range(m.shape[0]):
 						if(y >= y2 and  y3 >= y):
 							arr.append(([x, y]))
 			Z = np.float32(arr)
-			print(arr)
+			#print(arr)
 
 			criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
 			ret,label,center=cv2.kmeans(Z,k,None,criteria,10,cv2.KMEANS_RANDOM_CENTERS)
