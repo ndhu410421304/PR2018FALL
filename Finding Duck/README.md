@@ -1,5 +1,5 @@
 # Finding Ducks
-** Note that the result here were the resize ones, if you want to see the original version just jump in the folder. **
+**Note that the result here were the resize ones, if you want to see the original version just jump in the folder.**
 
 ## Current Structure
 ![img](https://user-images.githubusercontent.com/33059129/49300350-effbe980-f4fc-11e8-9ff4-0849130706d2.PNG)
