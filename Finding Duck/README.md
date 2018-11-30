@@ -26,7 +26,7 @@ As the picture below(picture 1), this was the first result of my program. At tha
 
  * The final thing I try to do is apply k-means method. I want to plot my result just like the output of the example given in class, give a single duck a dot on them, but unfortunately it was just half-finish. It took the last few days for my programing and it also need a lots of time for running the program, so the result were not that optimal for now, but it can filter those rocks.
 
-## The results I get :
+## The results:
  
 Picture 0: the very first result. The program use express image as training data, and also there is some mistake in my program and sampling, so this result was really bad.
 
