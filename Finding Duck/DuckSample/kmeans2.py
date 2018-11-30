@@ -80,13 +80,13 @@ for i in range(m.shape[0]):
 			for q in range(k):
 				if(k == 1):
 					b,d = center[q]
-					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
+					cv2.circle(sampleimg, (d,b), 3, (0,0,255), -1)
 					#prevent redo
 					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 					maskimg[sx,sy,:] = [254,254,254]
 				else:
 					b,d = center[q]
-					cv2.circle(sampleimg, (b,d), 3, (0,0,255), -1)
+					cv2.circle(sampleimg, (d,b), 3, (0,0,255), -1)
 					#prevent redo
 					#cv2.circle(maskimg, (b,d), 3, (0,0,254), -1)
 					maskimg[sx,sy,:] = [254,254,254]
