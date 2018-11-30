@@ -8,8 +8,8 @@ import time
 start_time = time.time()
 
 class Gmodel:
+	#save some steps by save them as variables in the model
 	def __init__(self, array, n):
-		#self.p = 0
 		self.array = array
 		self.num = n
 		self.resultarray = np.zeros((3,3))
@@ -19,18 +19,18 @@ class Gmodel:
 		self.sqrealco = np.zeros((3,3))
 		self.param2 = np.sqrt(np.power(np.pi,3))
 		self.param3 = np.zeros((3,3))
-		
+	
+	#calculation with lighter bureden of calculation
 	def pox(self, x):
 		result = np.exp((x - self.u) / (self.realco) * np.transpose(x - self.u) /  (-2)) / self.param3
-		#print(result)
 		return result.sum()
-		
+	
+	#set up array we are going to use for calculation
 	def setarray(self,array):
 		self.array = array
 
+	#here we get the param meter we are going to use in calculating probability, include mean, cov and other frequntly used ones
 	def buildmodel(self):
-		#sampleimg = cv.LoadImage("full_duck.jpg")
-		#sampleb,sampleg,sampler = cv.split(sampleimg)
 		total = np.zeros((1,3))
 		for i in range(self.num):
 			total = total + self.array[i,:]
@@ -42,6 +42,7 @@ class Gmodel:
 		self.sqrealco = np.sqrt(self.realco)
 		self.param3 = self.sqrealco * self.param2
 
+#classify by compare which is greater
 class Bayes:
 	def __init__(self):
 		self.w0 = 1
@@ -53,14 +54,12 @@ class Bayes:
 			label = 0
 		return label
 
+#load image
 sampleimg = cv.imread("full_duck.jpg",3)
 duckimg = cv.imread("slice_duck_1.jpg",3)
 nonduckimg = cv.imread("slice_nonduck_1.jpg",3)
-#cv.imshow('S', sampleimg)
-#cv.imshow('D', duckimg)
-#cv.imshow('N', nonduckimg)
-#c = cv.waitKey(12000)		
 		
+#split with channels
 duckb,duckg,duckr = cv.split(duckimg)
 nonduckb,nonduckg,nonduckr = cv.split(nonduckimg)
 sampleb,sampleg,sampler = cv.split(sampleimg)
@@ -75,6 +74,7 @@ ducknum = hid * weid
 duckarray = np.zeros((ducknum,3))
 for i in range(hid):
 	for j in range(weid):
+		#set value filter for the sampling dots
 		if duckb[i,j] > 251 and duckg[i,j] > 251 and duckr[i,j] > 251: #v2-4
 		#if duckb[i,j] > 250 and duckg[i,j] > 250 and duckr[i,j] > 250: #v2-3
 		#if duckb[i,j] > 240 and duckg[i,j] > 240 and duckr[i,j] > 240: #v2-2
@@ -93,6 +93,7 @@ nonducknum = hin * wein
 nonduckarray = np.zeros((nonducknum,3))
 for i in range(hin):
 	for j in range(wein):
+		#set value filter for the sampling dots, same as what we do to the ducks
 		if nonduckb[i,j] > 210 and nonduckg[i,j] > 210 and nonduckr[i,j] > 210: #v2-4
 		#if nonduckb[i,j] > 200 and nonduckg[i,j] > 200 and nonduckr[i,j] > 200: #v2-3
 			nonduckarray[n,0] = nonduckb[i,j]
@@ -107,16 +108,19 @@ for i in range(hin):
 			nonduckarray[n,2] = 210 #v2-4
 		n = n + 1
 
+#the code above remoce a pair of for loops, simply by combine them into single one
 n = 0
 duckmodel = Gmodel(duckarray, ducknum)
 nonduckmodel = Gmodel(nonduckarray, nonducknum)
-			
+	
+#set up array of the result we had gotten	
 duckmodel.setarray(duckarray)
 nonduckmodel.setarray(nonduckarray)
 
 duckmodel.buildmodel()
 nonduckmodel.buildmodel()
 
+#do classification
 bayes = Bayes()
 test = np.zeros((1,3))
 
@@ -126,19 +130,12 @@ for i in range(hi):
 		test[0,0] = sampleb[i,j]
 		test[0,1] = sampleg[i,j]
 		test[0,2] = sampler[i,j]
-		#print(test)
-		#print(ducknum)
+		#set up dot if the duck had much higher probability on specific dots
 		label = bayes.classify(duckmodel.pox(test), nonduckmodel.pox(test))
 		if(label):
 			color = (0,0,255)
 			sampleimg[i,j] = color
-		#n = n + 1
-		#if(n == 100):
-		#	print(n)
-		#if((n%10000 == 0) and (n > 10000)):
-		#	print(n)
 
-#cv.ShowImage('Result', sampleimg)
 print("--- %s seconds ---" % (time.time() - start_time))
 cv.imwrite('Result_4.jpg', sampleimg)
 
