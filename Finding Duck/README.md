@@ -29,47 +29,47 @@ As the picture below(picture 1), this was the first result of my program. At tha
  
 Picture 0: the very first result. The program use express image as training data, and also there is some mistake in my program and sampling, so this result was really bad.
 
-![img](https://user-images.githubusercontent.com/33059129/49299631-29335a00-f4fb-11e8-8a48-e92361e88c51.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299631-29335a00-f4fb-11e8-8a48-e92361e88c51.png width="480">
 
 The picture of result of first version of program: In this version, there are a lots of outliers.
 
-![img](https://user-images.githubusercontent.com/33059129/49299709-5f70d980-f4fb-11e8-93bb-df75ef404ab6.png) 
+<img src=https://user-images.githubusercontent.com/33059129/49299709-5f70d980-f4fb-11e8-93bb-df75ef404ab6.png width="480">
 
 Picture 2: After some modify… The second version of program, after several changes, the grounds can be classify as non-duck for now but still lots of small rocks
 
-![img](https://user-images.githubusercontent.com/33059129/49299741-6f88b900-f4fb-11e8-8a7f-380a817a8c8f.png)
-![img](https://user-images.githubusercontent.com/33059129/49299822-9e9f2a80-f4fb-11e8-9b2a-dfa5c9a6f204.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299741-6f88b900-f4fb-11e8-8a7f-380a817a8c8f.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299822-9e9f2a80-f4fb-11e8-9b2a-dfa5c9a6f204.png width="48">
  
 Picture 3: Some trade-offs: In the later version of the program I have set some value filter to make only strongly relative points to be classify as ducks, however this may lead to some loss on ducks’ body.
 
 
-![img](https://user-images.githubusercontent.com/33059129/49299835-a6f76580-f4fb-11e8-8916-7024f804fad9.png)
-![img](https://user-images.githubusercontent.com/33059129/49299840-a959bf80-f4fb-11e8-983e-3b82bb304f16.png)
-![img](https://user-images.githubusercontent.com/33059129/49299844-abbc1980-f4fb-11e8-8a6e-e4afe75682a9.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299835-a6f76580-f4fb-11e8-8916-7024f804fad9.png width="48">
+<img src=https://user-images.githubusercontent.com/33059129/49299840-a959bf80-f4fb-11e8-983e-3b82bb304f16.png width="48">
+<img src=https://user-images.githubusercontent.com/33059129/49299844-abbc1980-f4fb-11e8-8a6e-e4afe75682a9.png width="48">
 
 Picture 4: 3rd and the Best version, since we used some method on sampling, the most part of the rock can be filter by simply compare the probability of the function output.
 
-![img](https://user-images.githubusercontent.com/33059129/49299848-ae1e7380-f4fb-11e8-8e63-9fe01df09244.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299848-ae1e7380-f4fb-11e8-8e63-9fe01df09244.png width="480">
 
 Picture 5: Some other interesting work: mask
 
 
-![img](https://user-images.githubusercontent.com/33059129/49299870-ba0a3580-f4fb-11e8-9498-1b337f6a809d.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299870-ba0a3580-f4fb-11e8-9498-1b337f6a809d.png width="480">
 
 Picture 6: Different sampling method, above one were the original approach.
  
-![img](https://user-images.githubusercontent.com/33059129/49299875-bc6c8f80-f4fb-11e8-9435-4d05275d7ccf.png)
-![img](https://user-images.githubusercontent.com/33059129/49299879-be365300-f4fb-11e8-9642-f30811400ad8.jpg)
+<img src=https://user-images.githubusercontent.com/33059129/49299875-bc6c8f80-f4fb-11e8-9435-4d05275d7ccf.png width="48">
+<img src=https://user-images.githubusercontent.com/33059129/49299879-be365300-f4fb-11e8-9642-f30811400ad8.jpg width="48">
 
 Picture 7: Different duck sampling method.
 
-![img](https://user-images.githubusercontent.com/33059129/49299887-c3939d80-f4fb-11e8-8ba2-ff653bb13634.png)
-![img](https://user-images.githubusercontent.com/33059129/49299889-c5f5f780-f4fb-11e8-9cce-dd7f29615c91.png)
-![img](https://user-images.githubusercontent.com/33059129/49299894-c8585180-f4fb-11e8-89c4-3952134c4538.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299887-c3939d80-f4fb-11e8-8ba2-ff653bb13634.png width="48">
+<img src=https://user-images.githubusercontent.com/33059129/49299889-c5f5f780-f4fb-11e8-9cce-dd7f29615c91.png width="48">
+<img src=https://user-images.githubusercontent.com/33059129/49299894-c8585180-f4fb-11e8-89c4-3952134c4538.png width="48">
 
 Picture 8: The result of k-means with dot count filter. The dot for a single duck is great, but seems the filter of multi-duck were wrong.
 
-![img](https://user-images.githubusercontent.com/33059129/49299900-cabaab80-f4fb-11e8-8273-c7cc8e86a822.png)
+<img src=https://user-images.githubusercontent.com/33059129/49299900-cabaab80-f4fb-11e8-8273-c7cc8e86a822.png width="48">
 
 
 
