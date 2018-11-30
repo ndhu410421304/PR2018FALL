@@ -29,15 +29,15 @@ As the picture below(picture 1), this was the first result of my program. At tha
  
 Picture 0: the very first result. The program use express image as training data, and also there is some mistake in my program and sampling, so this result was really bad.
 
-<img src=https://user-images.githubusercontent.com/33059129/49299631-29335a00-f4fb-11e8-8a48-e92361e88c51.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299631-29335a00-f4fb-11e8-8a48-e92361e88c51.png width="240">
 
 The picture of result of first version of program: In this version, there are a lots of outliers.
 
-<img src=https://user-images.githubusercontent.com/33059129/49299709-5f70d980-f4fb-11e8-93bb-df75ef404ab6.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299709-5f70d980-f4fb-11e8-93bb-df75ef404ab6.png width="240">
 
 Picture 2: After some modify… The second version of program, after several changes, the grounds can be classify as non-duck for now but still lots of small rocks
 
-<img src=https://user-images.githubusercontent.com/33059129/49299741-6f88b900-f4fb-11e8-8a7f-380a817a8c8f.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299741-6f88b900-f4fb-11e8-8a7f-380a817a8c8f.png width="240">
 <img src=https://user-images.githubusercontent.com/33059129/49299822-9e9f2a80-f4fb-11e8-9b2a-dfa5c9a6f204.png width="96">
  
 Picture 3: Some trade-offs: In the later version of the program I have set some value filter to make only strongly relative points to be classify as ducks, however this may lead to some loss on ducks’ body.
@@ -49,12 +49,12 @@ Picture 3: Some trade-offs: In the later version of the program I have set some 
 
 Picture 4: 3rd and the Best version, since we used some method on sampling, the most part of the rock can be filter by simply compare the probability of the function output.
 
-<img src=https://user-images.githubusercontent.com/33059129/49299848-ae1e7380-f4fb-11e8-8e63-9fe01df09244.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299848-ae1e7380-f4fb-11e8-8e63-9fe01df09244.png width="240">
 
-Picture 5: Some other interesting work: mask
+Picture 5: Some other interesting work: mas
 
 
-<img src=https://user-images.githubusercontent.com/33059129/49299870-ba0a3580-f4fb-11e8-9498-1b337f6a809d.png width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49299870-ba0a3580-f4fb-11e8-9498-1b337f6a809d.png width="240">
 
 Picture 6: Different sampling method, above one were the original approach.
  
@@ -69,7 +69,7 @@ Picture 7: Different duck sampling method.
 
 Picture 8: The result of k-means with dot count filter. The dot for a single duck is great, but seems the filter of multi-duck were wrong.
 
-<img src=https://user-images.githubusercontent.com/33059129/49301227-17ec4c80-f4ff-11e8-9f21-ccdb558c7e72.PNG width="480">
+<img src=https://user-images.githubusercontent.com/33059129/49301227-17ec4c80-f4ff-11e8-9f21-ccdb558c7e72.PNG width="240">
 
 
 
