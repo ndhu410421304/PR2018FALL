@@ -95,4 +95,33 @@ The way I improve my program and result is by try and error. Since you will neve
   During this practice, I think myself still lack a large amount of programing experience, although I can come up with good ideas or approach, but since the dirty codes some method could have been unable to realistic at this moment. I need to try to improve the quality of the code in case when I face a much larger work in the future, it could just be a nightmare since nothing could run under those unnecessary process.
   
   My thought about this assignment is that this is really interesting, although there may be some frustration such as bug code not be solved, hard to optimize the code, and it also take me a lot of time to do this assignment to make it better and better which make me really tired, I certainly learn a lot of thing during programing, and also searching those issue and solution, and discussion with others to make both of us to have greater result. Having these kinds of experience, it could be a great help in my future of programing.
+  
+# Appendix:
+# Link of Programs (Current Version):
+* Note that old the old versions were store in the old version file storage.
+* Version 3 of Program:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/extractduck3.py
+
+* Mask:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/mask.py
+
+* Pre-Kmeans:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/prekmeans.py
+
+* Kmeans2:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/kmeans2.py
+
+* Kmeans3:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/kmeans3.py
+
+## Results:
+* From Version3:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/Result_extract3.jpg
+
+* From Mask:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/Mask.png
+
+* From Kmeans2:
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/KMean2.png
+
 
