@@ -69,7 +69,7 @@ Picture 7: Different duck sampling method.
 
 Picture 8: The result of k-means with dot count filter. The dot for a single duck is great, but seems the filter of multi-duck were wrong.
 
-<img src=https://user-images.githubusercontent.com/33059129/49299900-cabaab80-f4fb-11e8-8273-c7cc8e86a822.png width="48">
+<img src=https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/KMean2.png width="48">
 
 
 
