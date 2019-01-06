@@ -1,6 +1,10 @@
 # Finding Ducks
 **Note that the result here were the resize ones, if you want to see the original version just jump in the folder.**
 
+# Update:
+(12/1) kmeans3 just complete running. Check result here: https://github.com/ndhu410421304/PR2018FALL/blob/master/Finding%20Duck/DuckSample/KMean3.png
+<img src="https://user-images.githubusercontent.com/33059129/49307057-014df180-f50f-11e8-8097-c724d6fd046c.PNG" width="240">
+
 ## Current Structure
 ![img](https://user-images.githubusercontent.com/33059129/49300350-effbe980-f4fc-11e8-9ff4-0849130706d2.PNG)
 
