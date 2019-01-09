@@ -20,15 +20,18 @@ for line in f:
 	A = word
 	B = line
 	J = len(line)
-	D[0][0] = 0
-	for i in range(1,I-1):
+	if(A[0] == B[0]):
+		D[0][0] = 0
+	else:
+		D[0][0] = 1
+	for i in range(1,I):
 		D[i][0]=D[i-1][0] + 1
-	for j in range(1,J-1):
+	for j in range(1,J):
 		D[0][j]=D[0][j-1] + 1
-	for i in range(1,I-1):
-		for j in range(1,J-1):
+	for i in range(1,I):
+		for j in range(1,J):
 			c1 = 0
-			print(i,j)
+			#print(i,j)
 			if(A[i] == B[j]):
 				c1 = D[i-1][j-1] + 0
 			else:
@@ -40,6 +43,8 @@ for line in f:
 	if(Distance < minDistance):
 		minDistance = Distance
 		closestWord = B
-print(closestWord)
-	
+		print(B)
+		print(minDistance)
+
+print(closestWord)	
 print(linenum)
