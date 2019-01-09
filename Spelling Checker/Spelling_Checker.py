@@ -9,7 +9,7 @@ f = open("dictionary.txt", "r")
 #print(f.readline())
 D = numpy.zeros((40, 40))
 word = input('Enter your Word:')
-print(word)
+#print(word)
 minDistance = 10000 #big enough when initial
 closestword = word
 #print(len(word))
@@ -19,7 +19,8 @@ for line in f:
 	linenum+=1
 	A = word
 	B = line
-	J = len(line)
+	J = len(line) - 1 #because it include changeline character, so -1
+
 	if(A[0] == B[0]):
 		D[0][0] = 0
 	else:
@@ -39,12 +40,13 @@ for line in f:
 			c2 = D[i-1][j] + 1
 			c3 = D[i][j-1] + 1
 			D[i,j] = min(c1, c2, c3)
+
 	Distance = D[I-1,J-1]
 	if(Distance < minDistance):
 		minDistance = Distance
 		closestWord = B
-		print(B)
-		print(minDistance)
+		#print(B)
+		#print(minDistance)
 
-print(closestWord)	
-print(linenum)
+print('Closest Word:',closestWord)	
+#print(linenum)
