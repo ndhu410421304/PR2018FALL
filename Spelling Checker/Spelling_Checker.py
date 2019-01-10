@@ -23,8 +23,11 @@ linenum = 0;
 for line in f:
 	linenum+=1
 	A = word
+	line = line.replace('\n','')
 	B = line
-	J = len(line) - 1 #because it include changeline character, so -1
+	J = len(line) #because it include changeline character, so -1(old stuff)
+	#print(line)
+	#print(J)
 
 	if(A[0] == B[0]):
 		D[0][0] = 0
