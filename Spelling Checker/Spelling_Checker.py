@@ -8,9 +8,14 @@ f = open("dictionary.txt", "r")
 #print(f.read()) 
 #print(f.readline())
 D = numpy.zeros((40, 40))
+#list
 D1 = []
 D2 = []
 D3 = []
+#count length
+D1C = 0
+D2C = 0
+D3C = 0
 
 word = input('Enter your Word:')
 #print(word)
@@ -58,10 +63,13 @@ for line in f:
 		#print(minDistance)
 	if(Distance == 3):
 		D3.append(B)
+		D3C += 1
 	if(Distance == 2):
 		D2.append(B)
+		D2C += 1
 	if(Distance == 1):
 		D1.append(B)
+		D1C += 1
 	if(Distance == 0):
 		closestword = B
 		equal = 1
@@ -71,9 +79,15 @@ if(equal == 1):
 else:
 	print('Spelling is wrong.')
 	print('Word with distance 1:')
-	print(D1)
+	#print(D1)
+	for i in range(0,D1C):
+		print(D1[i])
 	print('Word with distance 2:')
-	print(D2)
+	#print(D2)
+	for i in range(0,D2C):
+		print(D2[i])
 	print('Word with distance 3:')
-	print(D3)
+	#print(D3)
+	for i in range(0,D3C):
+		print(D3[i])
 #print(linenum)
