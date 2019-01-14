@@ -123,6 +123,7 @@ class MainWind(QMainWindow):
 		#UI of Spelling Checker
 		panel = SpellCheckGUI()
 		panel.setParent(self)
+		self.setCentralWidget(panel) # resize option
 
 		#show the window
 		self.show()
