@@ -81,9 +81,13 @@ class CheckResult():
 			if(Distance == 1):
 				self.D1.append(B)
 				self.D1C += 1
+				route = self.check_route(self.D, I, J, 1)
+				print(self.D[0][0],self.D[1][1],self.D[0][1],self.D[1][0])
+				print(route)
 			if(Distance == 0):
 				self.closestword = B
 				self.equal = 1
+				break # if once eqaul we don't need to found rest
 		
 		#things to output
 		R = []
@@ -96,7 +100,6 @@ class CheckResult():
 			R.append('Word with distance 1:')
 			for i in range(0,self.D1C):
 				R.append(self.D1[i])
-				
 			R.append('Word with distance 2:')
 			for i in range(0,self.D2C):
 				R.append(self.D2[i])
@@ -108,6 +111,59 @@ class CheckResult():
 		
 		#clear the result
 		self.clear()
+		
+	def check_route(self, D, I, J, distance):
+		dis = 0
+		dis = D[0][0]
+		a = 'No operation'
+		b = 'Insertion'
+		c = 'Substitution'
+		d = 'Deletion'
+		route = []
+		if(dis == 0):
+			route.append(a)
+			#print(a)
+		else:
+			route.append(c)
+			#print(c)
+		i = 0
+		j = 0
+		run = 1 #detect whether to stop
+		while run:
+			#print('nn')
+			if(i+1 < I):
+				d1 = D[i+1][j]
+			else:
+				d1 = 1000
+			if(j+1 < J):
+				d2 = D[i][j+1]
+			else:
+				d2 = 1000
+			if(i+1 < I and j+1 < J):
+				d3 = D[i+1][j+1]
+			else:
+				d3 = 1000
+			if(((d1 == 1000) and (d2 == 1000)) and (d3 == 1000)):
+				run = 0
+				break
+			else:
+				m = min(d1, d2, d3)
+			if(d3 == m): #Shortest route prior
+				if(d3 == dis):
+					route.append(a)
+				else:
+					route.append(c)
+				i = i + 1
+				j = j + 1
+			elif(d2 == m):
+				route.append(d)
+				j = j + 1
+			else:
+				route.append(b)
+				i = i + 1
+			dis = m
+			
+		return route
 		
 
 class MainWind(QMainWindow):
