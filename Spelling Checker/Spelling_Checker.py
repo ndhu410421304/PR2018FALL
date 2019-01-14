@@ -112,35 +112,29 @@ class CheckResult():
 		#clear the result
 		self.clear()
 		
-	def check_route(self, D, I, J, distance):
-		dis = 0
-		dis = D[0][0]
+	def check_route(self, D, I, J, distance): #check route by backtrack
+		dis = distance
+		dis = D[I-1][J-1] # start by end
 		a = 'No operation'
 		b = 'Insertion'
 		c = 'Substitution'
 		d = 'Deletion'
 		route = []
-		if(dis == 0):
-			route.append(a)
-			#print(a)
-		else:
-			route.append(c)
-			#print(c)
-		i = 0
-		j = 0
+		i = I - 1
+		j = J - 1
 		run = 1 #detect whether to stop
 		while run:
 			#print('nn')
-			if(i+1 < I):
-				d1 = D[i+1][j]
+			if(i-1 >= 0 and j >= 0):
+				d1 = D[i-1][j]
 			else:
 				d1 = 1000
-			if(j+1 < J):
-				d2 = D[i][j+1]
+			if(j-1 >= 0 and i >= 0):
+				d2 = D[i][j-1]
 			else:
 				d2 = 1000
-			if(i+1 < I and j+1 < J):
-				d3 = D[i+1][j+1]
+			if(i-1 >= 0 and j-1 >= 0):
+				d3 = D[i-1][j-1]
 			else:
 				d3 = 1000
 			if(((d1 == 1000) and (d2 == 1000)) and (d3 == 1000)):
@@ -150,18 +144,27 @@ class CheckResult():
 				m = min(d1, d2, d3)
 			if(d3 == m): #Shortest route prior
 				if(d3 == dis):
-					route.append(a)
+					route.insert(0,a) # use insert because backtrack; insert to front
 				else:
-					route.append(c)
-				i = i + 1
-				j = j + 1
+					route.insert(0,c)
+				#print(m, i, j)
+				i = i - 1
+				j = j - 1
+				
 			elif(d2 == m):
-				route.append(d)
-				j = j + 1
+				route.insert(0,d)
+				#print(m, i, j)
+				j = j - 1
 			else:
-				route.append(b)
-				i = i + 1
+				route.insert(0,b)
+				#print(m, i, j)
+				i = i - 1
 			dis = m
+			
+		if(D[0][0] == 0):
+			route.insert(0, a)
+		else:
+			route.insert(0, c)
 			
 		return route
 		
@@ -231,9 +234,29 @@ class SpellCheckGUI(QWidget):
 		check.word = str(self.lbox.text()) #need to convert Qstirng to normal string!! (important)
 		#self.tbox.setText(self.tbox.toPlainText() + check.word + '\n')
 		R, num = check.do_action()
+		
+		#progress bar
+		progress = QProgressDialog(self)
+		progress.setWindowTitle("Wait a bit...")
+		progress.setLabelText("Checking...")
+		progress.setCancelButtonText("Cancel Checking")
+		progress.setWindowModality(Qt.WindowModal)
+		
+		progress.setRange(0,num)
+		
 		for n in range(0, num):
 			self.tbox.setText(self.tbox.toPlainText() + R[n])
 			self.tbox.setText(self.tbox.toPlainText() + '\n')
+			
+			#set progress bar
+			progress.setValue(n)
+			if progress.wasCanceled():
+				QMessageBox.warning(self,"Warning","Checking Canceled")
+				break #break when the checking had beend canceld by user
+		else:
+			progress.setValue(num)
+			QMessageBox.information(self,"Done","Checking done")
+			
 
 #main program call			
 if __name__ == '__main__':
