@@ -44,6 +44,9 @@ class CheckResult():
 	def do_action(self):
 		I = len(self.word)
 		linenum = 0
+		route3 = []
+		route2 = []
+		route1 = []
 		for line in self.f:
 			linenum+=1
 			A = self.word
@@ -72,18 +75,23 @@ class CheckResult():
 
 			Distance = self.D[I-1,J-1]
 
+			
+			
 			if(Distance == 3):
 				self.D3.append(B)
 				self.D3C += 1
+				route3.append(str(self.check_route(self.D, I, J, 3)))
+				#print(B)
 			if(Distance == 2):
 				self.D2.append(B)
 				self.D2C += 1
+				route2.append(str(self.check_route(self.D, I, J, 1)))
 			if(Distance == 1):
 				self.D1.append(B)
 				self.D1C += 1
-				route = self.check_route(self.D, I, J, 1)
-				print(self.D[0][0],self.D[1][1],self.D[0][1],self.D[1][0])
-				print(route)
+				route1.append(str(self.check_route(self.D, I, J, 1)))
+				#print(self.D[0][0],self.D[1][1],self.D[0][1],self.D[1][0])
+				#print(route)
 			if(Distance == 0):
 				self.closestword = B
 				self.equal = 1
@@ -99,14 +107,15 @@ class CheckResult():
 			R.append('Spelling is wrong.')
 			R.append('Word with distance 1:')
 			for i in range(0,self.D1C):
-				R.append(self.D1[i])
+				
+				R.append(self.D1[i] + " " + route1[i])
 			R.append('Word with distance 2:')
 			for i in range(0,self.D2C):
-				R.append(self.D2[i])
+				R.append(self.D2[i] + " " + route2[i])
 			R.append('Word with distance 3:')
 			for i in range(0,self.D3C):
-				R.append(self.D3[i])
-			numtooutput = 2 + self.D1C + self.D2C + self.D3C
+				R.append(self.D3[i] + " " + route3[i])
+			numtooutput = 4 + self.D1C + self.D2C + self.D3C
 		return R, numtooutput
 		
 		#clear the result
@@ -256,6 +265,7 @@ class SpellCheckGUI(QWidget):
 		else:
 			progress.setValue(num)
 			QMessageBox.information(self,"Done","Checking done")
+			
 			
 
 #main program call			
