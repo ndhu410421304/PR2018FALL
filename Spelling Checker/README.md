@@ -3,7 +3,7 @@
 
 # Update(1/16):
 
-paragraph spelling checking: 
+Paragraph Spelling Checking: 
 See
 https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Paragraph_Spelling_Checker.py
 
