@@ -23,7 +23,7 @@ Colored Paragraph Spelling Checking
 
 ![img](https://user-images.githubusercontent.com/33059129/51255962-43f45c00-19df-11e9-98a9-0839b3f48334.PNG)
 
-The change: store the result of if the word is correct, then use html code to insert to textedit by insertHtml
+The change: store the result of if the word is correct, then use html code to insert to textedit by insertHtml.
 Check https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Paragraph_Spelling_Checker_color.py
 
 ## Assignment report
