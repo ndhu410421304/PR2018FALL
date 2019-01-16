@@ -3,7 +3,6 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QSize
-#from PyQt5.QtGui import QApplication #for update progress bar
 import numpy
 
 class MainWind(QMainWindow):
@@ -76,7 +75,6 @@ class SpellCheckGUI(QWidget):
 		
 		self.tbox = QTextEdit()
 		grid.addWidget(self.tbox, 8,1,8,2)
-		#self.tbox.insertPlainText('abcde')
 		
 		self.setLayout(grid) #put them all in layout
 		self.show()
@@ -129,14 +127,10 @@ class SpellCheckGUI(QWidget):
 			
 			self.s_count += 1
 				
-			#self.wordrecord.append(self.do_action(strip_charcter(spl))
-			self.return_result(self.do_action(self.strip_character(spl)))
+			self.return_result(self.do_action(self.strip_character(spl))) #show the result after we are sure it is correct or user chosen the ones they want
 		else:
 			progress.setValue(self.s_count)
 			QMessageBox.information(self,"Done","Output done")
-			
-			
-		#self.return_result()
 		
 	def strip_character(self,word):
 		word = word.replace(',', '')
@@ -152,27 +146,18 @@ class SpellCheckGUI(QWidget):
 		#word = self.wordrecord[i]
 		if(self.upperrecord[self.s_count - 1] == 1): #back to uppercase
 			word = word.capitalize()
-			#self.wordrecord[self.s_count - 1] = word
 		if(self.markrecord[self.s_count - 1] == 1):#return the character
 			word = word + '.'
-			#self.wordrecord[self.s_count - 1] = word
 		elif(self.markrecord[self.s_count - 1] == 2):#return the character
 			word = word + ','
-			#self.wordrecord[self.s_count - 1] = word
 		elif(self.markrecord[self.s_count - 1] == 3):#return the character
 			word = word + '?'
-			#self.wordrecord[self.s_count - 1] = word
 		elif(self.markrecord[self.s_count - 1] == 4):#return the character
 			word = word + '!'
-			#self.wordrecord[self.s_count - 1] = word
 		elif(self.markrecord[self.s_count - 1] == 5):#return the character
 			word = word + '"'
-			#self.wordrecord[self.s_count - 1] = word
 		self.tbox.insertPlainText(word) #insert the result
-		#if(i != self.s_count - 1): #not last one
 		self.tbox.insertPlainText(" ") # add back space we had strip
-		
-		#self.clear()
 			
 		
 	def clear(self):
@@ -260,63 +245,6 @@ class SpellCheckGUI(QWidget):
 		self.f.seek(0) #back to the begining of dictionary
 		
 		return nowword
-		
-		
-	def check_route(self, D, I, J, distance): #check route by backtrack
-		dis = distance
-		dis = D[I-1][J-1] # start by end
-		a = 'No operation'
-		b = 'Insertion'
-		c = 'Substitution'
-		d = 'Deletion'
-		route = []
-		i = I - 1
-		j = J - 1
-		run = 1 #detect whether to stop
-		while run:
-			#print('nn')
-			if(i-1 >= 0 and j >= 0):
-				d1 = D[i-1][j]
-			else:
-				d1 = 1000
-			if(j-1 >= 0 and i >= 0):
-				d2 = D[i][j-1]
-			else:
-				d2 = 1000
-			if(i-1 >= 0 and j-1 >= 0):
-				d3 = D[i-1][j-1]
-			else:
-				d3 = 1000
-			if(((d1 == 1000) and (d2 == 1000)) and (d3 == 1000)):
-				run = 0
-				break
-			else:
-				m = min(d1, d2, d3)
-			if(d3 == m): #Shortest route prior
-				if(d3 == dis):
-					route.insert(0,a) # use insert because backtrack; insert to front
-				else:
-					route.insert(0,c)
-				#print(m, i, j)
-				i = i - 1
-				j = j - 1
-				
-			elif(d2 == m):
-				route.insert(0,d)
-				#print(m, i, j)
-				j = j - 1
-			else:
-				route.insert(0,b)
-				#print(m, i, j)
-				i = i - 1
-			dis = m
-			
-		if(D[0][0] == 0):
-			route.insert(0, a)
-		else:
-			route.insert(0, c)
-			
-		return route
 			
 
 #main program call			
