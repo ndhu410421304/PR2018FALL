@@ -1,5 +1,17 @@
 # Spelling Checker
-**Working in process**
+**check main program at https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Spelling_Checker.py ! **
+
+# Update(1/16):
+
+paragraph spelling checking: 
+See
+https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Paragraph_Spelling_Checker.py
+
+Additional Version: Try to make output to have ascending order as well...just a test
+See https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Spelling_Checker_ascending_result.py
+
+## Assignment report
+(pdf version here: https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/PR%20Assignment%202%20Report.pdf)
 
 ## Current Structure
 ![img](https://user-images.githubusercontent.com/33059129/51222190-9f8aff00-1977-11e9-8122-6aeb3d46d488.PNG)
