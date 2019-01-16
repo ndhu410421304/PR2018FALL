@@ -2,7 +2,7 @@
 **Working in process**
 
 ## Current Structure
-![img](https://user-images.githubusercontent.com/33059129/51217545-92fcab80-1963-11e9-8ca6-6d8c4e49863d.PNG)
+![img](https://user-images.githubusercontent.com/33059129/51222190-9f8aff00-1977-11e9-8122-6aeb3d46d488.PNG)
 
 # How to do the assignment?
   In this assignment, we need to follow the guide to finish the homework, which is to use edit distance, so call Levenshtein distance, to check whether the input word is spelling correct. Giving a dictionary text file, we are going to compare the input word with every words in the dictionary to find out the edit distance between them. If the minimum edit distance of 0 exist in the dictionary file, we can say that the word is correct spelling. Otherwise, the word is not spelling correct, and we will list the words in range of edit distance 1 to 3.
@@ -28,6 +28,9 @@ The result would be show in the textbox below. If your world exist in the dictio
   In the dictionary we didn’t have much words about “grammar”, such as we have ‘swim’, but not ‘swimming.’ Thus if we have to deal with the grammar, our dictionary would not work well. These grammar things maybe are better to deal with the toolkit such as NLTK.
 # Additional Challenge: Paragraph Spelling Checking
   The spelling checking is the easy one, why not we go on a challenge? So I challenge myself to make an at least ‘usable’ paragraph spelling checker.
+ 
+![img](https://user-images.githubusercontent.com/33059129/51222191-a0239580-1977-11e9-96d4-b5658e9965dd.PNG)
+ 
    It is kind of a transform of the spelling checker, but need to add few more works. Though some main parts remain unchanged, the structure were changed a lots.
   Same as spelling checker, first we initialize our GUI surface. This time we would have two text edit textbox, which one of them replace the previously line edit in order to take more inputs from user. When user put a sentence in the textbox, press check, it will popup a process bar to show the process as well. But this time, we add some additional popup messagebox when the program detect s misspelling word.             
   The popup window will show the options of the word with edit distance 1 to let the user to choose which one they are going to choose. The word after correction or they were correct originally will be showing in the textbox as soon as they are available.
