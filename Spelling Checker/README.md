@@ -31,13 +31,19 @@ The result would be show in the textbox below. If your world exist in the dictio
    It is kind of a transform of the spelling checker, but need to add few more works. Though some main parts remain unchanged, the structure were changed a lots.
   Same as spelling checker, first we initialize our GUI surface. This time we would have two text edit textbox, which one of them replace the previously line edit in order to take more inputs from user. When user put a sentence in the textbox, press check, it will popup a process bar to show the process as well. But this time, we add some additional popup messagebox when the program detect s misspelling word.             
   The popup window will show the options of the word with edit distance 1 to let the user to choose which one they are going to choose. The word after correction or they were correct originally will be showing in the textbox as soon as they are available.
-<img src=https://user-images.githubusercontent.com/33059129/51217562-9f810400-1963-11e9-9548-276fcbc12623.png width="240">
+
+<img src=https://user-images.githubusercontent.com/33059129/51217562-9f810400-1963-11e9-9548-276fcbc12623.png width="480">
+
   In the programing part, first we initialize main window of GUI, include two textbox(for I/O), and check button. Ones the check button were press, we will start working with the sentence. The program read in the sentence, then split the words by whitespace. In the same time, for each word we would record whether it contains Uppercase(here we only consider the situation of the uppercase by title), and also record if we contain other characters, here we try . , ? ! “ these five character, and only consider the case where they were in the end of the word, and would appear only one at a time.
-<img src=https://user-images.githubusercontent.com/33059129/51217563-a0199a80-1963-11e9-8c07-ea58751bdaca.png width="240">
+
+<img src=https://user-images.githubusercontent.com/33059129/51217563-a0199a80-1963-11e9-8c07-ea58751bdaca.png width="480">
+
   Then for each word we would strip the element we had mention above, check whether this word contain in the dictionary by the same way we have done in spelling checker, but popup a message box when we want user to choose the word they want to use.
   After that, we restore the chosen character with original contain element, such as upper case, or the other character, and then output as plaintext to the output text box. During these process, process bar running as well, to show you the process of the percentage of the word we had finish checking. After all the words were checked, the program will pop up a message box says “Output done.”
+
 <img src=https://user-images.githubusercontent.com/33059129/51217564-a0199a80-1963-11e9-970f-5e41e8d2805c.png width="240">
-For this program, this is just some simple practice of paragraph spelling check, it may not consider much of the situation, but I surely try hard to polish this one.
+
+  For this program, this is just some simple practice of paragraph spelling check, it may not consider much of the situation, but I surely try hard to polish this one.
 
 # Summary:
   In this assignment I have learn something new about python and pyqt, include application of some skill and function I had learned before, how to better deal with popup screen, some GUI techniques; learn better about the Levenshtein distance and implement backtrack method.
