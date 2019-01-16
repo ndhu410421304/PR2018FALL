@@ -3,12 +3,28 @@
 
 # Update(1/16):
 
-Paragraph Spelling Checking: 
-See
-https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Paragraph_Spelling_Checker.py
+**The following version were store in Additional Versions https://github.com/ndhu410421304/PR2018FALL/tree/master/Spelling%20Checker/Additional%20Versions** 
 
-Additional Version: Try to make output to have ascending order as well...just a test
-See https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Spelling_Checker_ascending_result.py
+Ascending order for words
+
+![img](https://user-images.githubusercontent.com/33059129/51223009-137ad680-197b-11e9-8621-5c037f5ab090.PNG)
+
+The change: after checking all the words, sort the list by length first, then regenerate the route, then find the route and print the result.
+Check https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Spelling_Checker_ascending_result.py
+
+No case for words
+
+![img](https://user-images.githubusercontent.com/33059129/51255961-43f45c00-19df-11e9-83b7-0040eebd90be.PNG)
+
+The change: For each time before calculate edit distance, we lower the case, but store the result as origin.
+Check https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Spelling_Checker_nocase.py 
+
+Colored Paragraph Spelling Checking
+
+![img](https://user-images.githubusercontent.com/33059129/51255962-43f45c00-19df-11e9-98a9-0839b3f48334.PNG)
+
+The change: store the result of if the word is correct, then use html code to insert to textedit by insertHtml
+Check https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Additional%20Versions/Paragraph_Spelling_Checker_color.py
 
 ## Assignment report
 (pdf version here: https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/PR%20Assignment%202%20Report.pdf)
