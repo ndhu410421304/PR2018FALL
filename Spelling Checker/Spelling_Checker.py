@@ -75,7 +75,8 @@ class CheckResult():
 
 			Distance = self.D[I-1,J-1]
 
-			
+			if(B == 'ac'):
+				print(Distance)
 			
 			if(Distance == 3):
 				self.D3.append(B)
@@ -83,6 +84,7 @@ class CheckResult():
 				route3.append(str(self.check_route(self.D, I, J, 3)))
 				#print(B)
 			if(Distance == 2):
+				#print(B)
 				self.D2.append(B)
 				self.D2C += 1
 				route2.append(str(self.check_route(self.D, I, J, 1)))
@@ -124,7 +126,7 @@ class CheckResult():
 	def check_route(self, D, I, J, distance): #check route by backtrack
 		dis = distance
 		dis = D[I-1][J-1] # start by end
-		a = 'No operation'
+		a = 'No Operation'
 		b = 'Insertion'
 		c = 'Substitution'
 		d = 'Deletion'

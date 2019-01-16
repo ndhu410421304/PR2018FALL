@@ -235,7 +235,7 @@ class SpellCheckGUI(QWidget):
 		msgbox = QMessageBox()
 		msgbox.setWindowTitle("Warning!")
 		msgbox.setText("The Spelling of word: "+spl+" \nis Incorrect!\nChoose some choice:")
-		
+		msgbox.addButton(spl, QMessageBox.ActionRole)
 		
 		#things to output
 		R = []
