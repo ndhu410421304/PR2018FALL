@@ -1,5 +1,5 @@
 # Spelling Checker
-**check main program at https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Spelling_Checker.py ! **
+**check main program at https://github.com/ndhu410421304/PR2018FALL/blob/master/Spelling%20Checker/Spelling_Checker.py !**
 
 # Update(1/16):
 
