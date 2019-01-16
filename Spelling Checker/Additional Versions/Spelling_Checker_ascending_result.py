@@ -81,25 +81,18 @@ class CheckResult():
 			if(Distance == 3):
 				self.D3.append(B)
 				self.D3C += 1
-				#route3.append(str(self.check_route(self.D, I, J, 3)))
-				#print(B)
 			if(Distance == 2):
-				#print(B)
 				self.D2.append(B)
 				self.D2C += 1
-				#route2.append(str(self.check_route(self.D, I, J, 1)))
 			if(Distance == 1):
 				self.D1.append(B)
 				self.D1C += 1
-				#route1.append(str(self.check_route(self.D, I, J, 1)))
-				#print(self.D[0][0],self.D[1][1],self.D[0][1],self.D[1][0])
-				#print(route)
 			if(Distance == 0):
 				self.closestword = B
 				self.equal = 1
 				break # if once eqaul we don't need to found rest
 				
-		self.D3 = sorted(self.D3, key = len)
+		self.D3 = sorted(self.D3, key = len) #sort by length
 		
 		self.D2 = sorted(self.D2, key = len)
 		
@@ -114,8 +107,7 @@ class CheckResult():
 		else:
 			R.append('Spelling is wrong.')
 			R.append('Word with distance 1:')
-			for i in range(0,self.D1C):
-				
+			for i in range(0,self.D1C): #regenerate route after sort
 				R.append(self.D1[i] + " " + str(self.check_route(self.gen_route(self.D1[i]), I, len(self.D1[i]), 1)))
 			R.append('Word with distance 2:')
 			for i in range(0,self.D2C):
@@ -129,7 +121,7 @@ class CheckResult():
 		#clear the result
 		self.clear()
 		
-	def gen_route(self,line):
+	def gen_route(self,line): #use to generate route
 		self.D = numpy.zeros((40, 40))
 		A = self.word
 		B = line
@@ -168,7 +160,6 @@ class CheckResult():
 		j = J - 1
 		run = 1 #detect whether to stop
 		while run:
-			#print('nn')
 			if(i-1 >= 0 and j >= 0):
 				d1 = D[i-1][j]
 			else:
@@ -191,17 +182,14 @@ class CheckResult():
 					route.insert(0,a) # use insert because backtrack; insert to front
 				else:
 					route.insert(0,c)
-				#print(m, i, j)
 				i = i - 1
 				j = j - 1
 				
 			elif(d2 == m):
 				route.insert(0,d)
-				#print(m, i, j)
 				j = j - 1
 			else:
 				route.insert(0,b)
-				#print(m, i, j)
 				i = i - 1
 			dis = m
 			
@@ -248,23 +236,14 @@ class SpellCheckGUI(QWidget):
 		grid.addWidget(self.msg, 0,1,0,2)
 		
 		self.lbox = QLineEdit()
-		#self.lbox.setSizePolicy(QSizePolicy.Maximum,QSizePolicy.Maximum)
-		#self.lbox.setAlignment(Qt.AlignCenter)
 		grid.addWidget(self.lbox, 1,1,1,2)
 		
 		Sbutton = QPushButton('Check')
 		Sbutton.clicked.connect(self.press)
-		#Sbutton.setSizePolicy(QSizePolicy.Minimum,QSizePolicy.Minimum) #setup size policy
 		Sbutton.setStyleSheet("QPushButton {font: bold; background-color: white;font-size: 24px;}") #initial button
 		grid.addWidget(Sbutton, 2,1,2,2)
 		
-		#self.msg = QMessageBox()
-		#self.msg.setText("Test")
-		#grid.addWidget(self.msg, 2,1,2,2)
-		
 		self.tbox = QTextEdit()
-		#self.tbox.setSizePolicy(QSizePolicy.Maximum,QSizePolicy.Maximum)
-		#self.tbox.setAlignment(Qt.AlignCenter)
 		grid.addWidget(self.tbox, 4,1,4,2)
 		
 		self.setLayout(grid) #put them all in layout
@@ -276,7 +255,6 @@ class SpellCheckGUI(QWidget):
 		
 		check = CheckResult()
 		check.word = str(self.lbox.text()) #need to convert Qstirng to normal string!! (important)
-		#self.tbox.setText(self.tbox.toPlainText() + check.word + '\n')
 		R, num = check.do_action()
 		
 		#progress bar

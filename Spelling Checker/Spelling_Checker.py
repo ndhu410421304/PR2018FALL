@@ -82,9 +82,7 @@ class CheckResult():
 				self.D3.append(B)
 				self.D3C += 1
 				route3.append(str(self.check_route(self.D, I, J, 3)))
-				#print(B)
 			if(Distance == 2):
-				#print(B)
 				self.D2.append(B)
 				self.D2C += 1
 				route2.append(str(self.check_route(self.D, I, J, 1)))
@@ -92,8 +90,6 @@ class CheckResult():
 				self.D1.append(B)
 				self.D1C += 1
 				route1.append(str(self.check_route(self.D, I, J, 1)))
-				#print(self.D[0][0],self.D[1][1],self.D[0][1],self.D[1][0])
-				#print(route)
 			if(Distance == 0):
 				self.closestword = B
 				self.equal = 1
@@ -135,7 +131,6 @@ class CheckResult():
 		j = J - 1
 		run = 1 #detect whether to stop
 		while run:
-			#print('nn')
 			if(i-1 >= 0 and j >= 0):
 				d1 = D[i-1][j]
 			else:
@@ -158,17 +153,14 @@ class CheckResult():
 					route.insert(0,a) # use insert because backtrack; insert to front
 				else:
 					route.insert(0,c)
-				#print(m, i, j)
 				i = i - 1
 				j = j - 1
 				
 			elif(d2 == m):
 				route.insert(0,d)
-				#print(m, i, j)
 				j = j - 1
 			else:
 				route.insert(0,b)
-				#print(m, i, j)
 				i = i - 1
 			dis = m
 			
@@ -210,28 +202,18 @@ class SpellCheckGUI(QWidget):
 		
 		self.msg = QLabel()
 		self.msg.setText("Type in the word you want to check spelling.")
-		#self.msg.setAlignment(Qt.AlignCenter)
 		self.msg.setAlignment(Qt.AlignLeft)
 		grid.addWidget(self.msg, 0,1,0,2)
 		
 		self.lbox = QLineEdit()
-		#self.lbox.setSizePolicy(QSizePolicy.Maximum,QSizePolicy.Maximum)
-		#self.lbox.setAlignment(Qt.AlignCenter)
 		grid.addWidget(self.lbox, 1,1,1,2)
 		
 		Sbutton = QPushButton('Check')
 		Sbutton.clicked.connect(self.press)
-		#Sbutton.setSizePolicy(QSizePolicy.Minimum,QSizePolicy.Minimum) #setup size policy
 		Sbutton.setStyleSheet("QPushButton {font: bold; background-color: white;font-size: 24px;}") #initial button
 		grid.addWidget(Sbutton, 2,1,2,2)
 		
-		#self.msg = QMessageBox()
-		#self.msg.setText("Test")
-		#grid.addWidget(self.msg, 2,1,2,2)
-		
 		self.tbox = QTextEdit()
-		#self.tbox.setSizePolicy(QSizePolicy.Maximum,QSizePolicy.Maximum)
-		#self.tbox.setAlignment(Qt.AlignCenter)
 		grid.addWidget(self.tbox, 4,1,4,2)
 		
 		self.setLayout(grid) #put them all in layout
@@ -243,7 +225,6 @@ class SpellCheckGUI(QWidget):
 		
 		check = CheckResult()
 		check.word = str(self.lbox.text()) #need to convert Qstirng to normal string!! (important)
-		#self.tbox.setText(self.tbox.toPlainText() + check.word + '\n')
 		R, num = check.do_action()
 		
 		#progress bar
